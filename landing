@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToneMate – AI Social Sidekick</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body { margin:0; font-family:'Inter',sans-serif; background:#f7f8fc; color:#1a1a1a; }
+    .hero { text-align:center; padding:60px 20px; background:linear-gradient(to right,#c3e0ff,#f3e0ff); }
+    .hero h1 { margin:0; font-size:2.8rem; }
+    .hero p { margin:10px 0; font-size:1.2rem; }
+    .cta { display:inline-block; margin:20px 0; padding:14px 28px; background:#5e60ce; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; transition:background .3s; }
+    .cta:hover { background:#4749b0; }
+    .demo { max-width:700px; margin:40px auto; padding:0 20px; }
+    .demo h2 { text-align:center; font-size:1.8rem; margin-bottom:20px; }
+    .demo-interactief input { width:100%; padding:14px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px; font-size:1rem; }
+    .demo-interactief button { padding:12px 22px; background:#5e60ce; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer; transition:background .3s; }
+    .demo-interactief button:hover { background:#3e45a5; }
+    .demo-output { margin-top:15px; font-style:italic; opacity:0; transition:opacity .4s; }
+    .demo-output.visible { opacity:1; }
+    /* Chat bubbles */
+    .chat-box { display:flex; flex-direction:column; gap:10px; margin:20px 0; }
+    .bubble.user { align-self:flex-end; background:#5e60ce; color:#fff; padding:10px 15px; border-radius:15px 15px 0 15px; max-width:80%; }
+    .bubble.ai { align-self:flex-start; background:#e0e7ff; color:#1a1a1a; padding:10px 15px; border-radius:15px 15px 15px 0; max-width:80%; }
+    /* Analytics bars */
+    .analytics { max-width:700px; margin:40px auto; padding:0 20px; }
+    .analytics h2 { text-align:center; font-size:1.8rem; margin-bottom:20px; }
+    .analytics-bar { display:flex; align-items:center; margin-bottom:12px; }
+    .analytics-bar .label { width:100px; font-weight:600; }
+    .analytics-bar .bar { flex:1; height:12px; background:#ddd; border-radius:6px; position:relative; }
+    .analytics-bar .bar::after { content:''; position:absolute; left:0; top:0; height:100%; width: var(--percent,50%); background:#5e60ce; border-radius:6px; }
+    @media (max-width:600px) { .hero h1 { font-size:2rem; } .demo h2, .analytics h2 { font-size:1.4rem; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>ToneMate – AI Social Sidekick</h1>
+    <p>Jouw slimme assistent voor perfecte berichten – op elke app, elk moment.</p>
+    <a href="#demo" class="cta">Probeer gratis</a>
+  </header>
+
+  <section id="demo" class="demo">
+    <h2>Probeer het nu zelf</h2>
+    <div class="chat-box">
+      <div class="bubble user">Jij: Hey! Hoe gaat het?</div>
+      <div class="bubble ai">ToneMate: Ik voel me goed! Jij dan?</div>
+    </div>
+    <div class="demo-interactief">
+      <input type="text" id="userInput" placeholder="Typ hier je bericht..." />
+      <button onclick="generateResponse()">Herschrijf met AI</button>
+      <div id="demoOutput" class="demo-output"></div>
+    </div>
+  </section>
+
+  <section class="analytics">
+    <h2>Toon-analyse resultaten</h2>
+    <div class="analytics-bar" style="--percent:80%">
+      <span class="label">Toon</span><span class="bar"></span>
+    </div>
+    <div class="analytics-bar" style="--percent:70%">
+      <span class="label">Stijl</span><span class="bar"></span>
+    </div>
+    <div class="analytics-bar" style="--percent:60%">
+      <span class="label">Timing</span><span class="bar"></span>
+    </div>
+  </section>
+
+  <script>
+    function generateResponse() {
+      const input = document.getElementById("userInput").value.trim().toLowerCase();
+      const output = document.getElementById("demoOutput");
+      if (!input) {
+        output.innerText = "Typ eerst een bericht.";
+        output.classList.add("visible");
+        return;
+      }
+      output.innerText = "AI is aan het nadenken...";
+      output.classList.add("visible");
+      setTimeout(() => {
+        let suggestion = "";
+        if (input.includes("wat doe je")) {
+          suggestion = "Hey, waar hou je je mee bezig vandaag?";
+        } else if (input.includes("yo")) {
+          suggestion = "Hey! Hoe gaat het met je?";
+        } else if (input.includes("hoe gaat")) {
+          suggestion = "Hoe gaat het met je vandaag?";
+        } else if (input.includes("alles goed")) {
+          suggestion = "Alles prima hier! Hoe is het met jou?";
+        } else {
+          suggestion = input.charAt(0).toUpperCase() + input.slice(1) + ", fijn dat je er bent!";
+        }
+        output.innerText = "ToneMate suggestie: " + suggestion;
+      }, 600);
+    }
+  </script>
+</body>
+</html>
