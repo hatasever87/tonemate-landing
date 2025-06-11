@@ -1,0 +1,62 @@
+
+body {
+  font-family: sans-serif;
+  background: #f7f8fc;
+  padding: 0;
+  margin: 0;
+}
+.hero {
+  background: linear-gradient(to right, #c3e0ff, #f3e0ff);
+  padding: 40px 20px;
+  text-align: center;
+}
+.mockup {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.cta {
+  display: inline-block;
+  margin-top: 10px;
+  background: #5e60ce;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.cta:hover {
+  background: #4749b0;
+}
+.demo {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 20px;
+}
+.demo-interactief input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.demo-interactief button {
+  padding: 10px 20px;
+  font-weight: bold;
+  background: #5e60ce;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.demo-interactief button:hover {
+  background: #3e45a5;
+}
+.demo-output {
+  margin-top: 15px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.demo-output.visible {
+  opacity: 1;
+}
